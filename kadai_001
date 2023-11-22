@@ -1,0 +1,16 @@
+pip install requests beautifulsoup4 | tail -n 1
+
+import requests
+from bs4 import BeautifulSoup
+
+url = 'https://news.yahoo.co.jp/articles/0abdcd82b173e5a3de053e49e5adc02b92e873fb?page=1'
+response = requests.get(url)
+soup = BeautifulSoup(response.text, 'html.parser')
+
+title_element = soup.select_one('#uamods > div')
+title_text = title_element.text
+
+print(title_text)
+
+from pprint import pprint
+pprint(title_text)
